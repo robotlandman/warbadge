@@ -43,6 +43,7 @@ def main():
   # Set the Wi-Fi radio to be a client only
   nic = network.WLAN(network.STA_IF)
   nic.active(True)
+  need_first_connect = True
   unused_nic = network.WLAN(network.AP_IF)
   unused_nic.active(False)
 
@@ -68,7 +69,7 @@ def main():
   # Our main program loop
   while True:
     # Check Wi-Fi connectivity
-    if nic.status() == network.STAT_GOT_IP:
+    if nic.status() == network.STAT_GOT_IP and not need_first_connect:
       # Connected
       np[config.LED_WIFI] = config.LED_COLOR_WIFI_UP
       np.write()
@@ -103,7 +104,7 @@ def main():
 
         last_upload = time.ticks_ms()
 
-    elif nic.status() == network.STAT_CONNECTING:
+    elif nic.status() == network.STAT_CONNECTING and not need_first_connect:
       # Still connecting
       np[config.LED_WIFI] = config.LED_COLOR_WIFI_DOWN
       np.write()
@@ -112,7 +113,13 @@ def main():
       np[config.LED_WIFI] = config.LED_COLOR_WIFI_DOWN
       np.write()
       last_connect = time.ticks_ms()
-      nic.connect(config.CONNECT_SSID)
+      need_first_connect = False
+
+      # Check whether we have a Wi-Fi PSK set or not
+      if not config.CONNECT_PSK:
+        nic.connect(config.CONNECT_SSID)
+      else:
+        nic.connect(config.CONNECT_SSID, config.CONNECT_PSK)
       
     # Check whether we should scan for SSIDs yet
     now = time.ticks_ms()

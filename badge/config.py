@@ -4,6 +4,9 @@
 # The Wi-Fi SSID to connect to
 CONNECT_SSID = 'shmoocon-romp'
 
+# The Wi-Fi PSK to use, leave blank for an open network
+CONNECT_PSK = ''
+
 # The base URL to post scan results to
 UPLOAD_URL = 'https://warbadge.ninja/checkin/'
 
