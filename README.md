@@ -40,16 +40,16 @@ You can see this in main.py, but here's an easy reference:
 **Bottom LED**
 Color | Meaning
 ----- | -------
-Blue  | Not connected to Wi-Fi
+Blue | Not connected to Wi-Fi
 Green | Connected to Wi-Fi
 
 **Bottom LED**
-Color  | Meaning
------- | -------
-Blue   | Scanning for SSIDs and APs
+Color | Meaning
+----- | -------
+Blue | Scanning for SSIDs and APs
 Yellow | Uploading results to [warbadge.ninja](https://warbadge.ninja/scoreboard)
-Green  | Successful upload
-Red    | Error uploading
+Green | Successful upload
+Red | Error uploading
 
 ## The con(test) is over, what now?
 
