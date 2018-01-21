@@ -34,6 +34,23 @@ If it was successful, the console will display the number of bytes written for e
 
 Power the badge off and on again, and make note of the MAC address that is printed to the console. The ShmooCon Labs team is recording MACs and handles for the [leaderboard](https://warbadge.ninja/scoreboard). Post-con, well, who knows how that is going to work - stay tuned.
 
+## What are all these LED colors?
+You can see this in main.py, but here's an easy reference:
+
+**Bottom LED**
+Color | Meaning
+----- | -------
+Blue  | Not connected to Wi-Fi
+Green | Connected to Wi-Fi
+
+**Bottom LED**
+Color  | Meaning
+------ | -------
+Blue   | Scanning for SSIDs and APs
+Yellow | Uploading results to [warbadge.ninja](https://warbadge.ninja/scoreboard)
+Green  | Successful upload
+Red    | Error uploading
+
 ## The con(test) is over, what now?
 
 If you want to modify your badge and continue playing the game, update config.py with a new SSID and optional PSK to connect to. Set the SSID to your phone's hotspot and you'll have a roaming Wi-Fi scanning rig.
