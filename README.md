@@ -38,6 +38,6 @@ Power the badge off and on again, and make note of the MAC address that is print
 
 If you want to modify your badge and continue playing the game, update config.py with a new open SSID to connect to. You can also update main.py to use WPA/WPA2 PSK authentication in the `nic.connect()` call. Set the SSID to your phone's hotspot and you'll have a roaming Wi-Fi scanning rig.
 
-If you just want to use the MicroPython environment and your badge is flashed, just hit Ctrl-C to break out of the main.py running program. The badge has two NeoPixel RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
+If you just want to use the MicroPython environment and your badge is flashed, hit Ctrl-C to break out of the main.py running program. The badge has two NeoPixel RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
 
 Have fun!
