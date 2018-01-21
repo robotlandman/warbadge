@@ -34,7 +34,10 @@ If it was successful, the console will display the number of bytes written for e
 
 Power the badge off and on again, and make note of the MAC address that is printed to the console. The ShmooCon Labs team is recording MACs and handles for the [leaderboard](https://warbadge.ninja/scoreboard). Post-con, well, who knows how that is going to work.
 
-## The con is over, what now?
-If you want to use the MicroPython environment and your badge is flashed, just hit Ctrl-C to break out of the main.py running program. The badge has two NeoPixel RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
+## The con(test) is over, what now?
+
+If you want to modify your badge and continue playing the game, update config.py with a new open SSID to connect to. You can also update main.py to use WPA/WPA2 PSK authentication in the `nic.connect()` call. Set the SSID to your phone's hotspot and you'll have a roaming Wi-Fi scanning rig.
+
+If you just want to use the MicroPython environment and your badge is flashed, just hit Ctrl-C to break out of the main.py running program. The badge has two NeoPixel RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
 
 Have fun!
