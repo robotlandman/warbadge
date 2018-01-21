@@ -38,12 +38,14 @@ Power the badge off and on again, and make note of the MAC address that is print
 You can see this in main.py, but here's an easy reference:
 
 **Bottom LED**
+
 Color | Meaning
 ----- | -------
 Blue | Not connected to Wi-Fi
 Green | Connected to Wi-Fi
 
-**Bottom LED**
+**Top LED**
+
 Color | Meaning
 ----- | -------
 Blue | Scanning for SSIDs and APs
