@@ -35,7 +35,7 @@ If it was successful, the console will display the number of bytes written for e
 Power the badge off and on again, and make note of the MAC address that is printed to the console. The ShmooCon Labs team is recording MACs and handles for the [leaderboard](https://warbadge.ninja/scoreboard). Post-con, well, who knows how that is going to work - stay tuned.
 
 ## What are all these LED colors?
-You can see this in main.py, but here's an easy reference:
+You can see/set this in config.py, but here's an easy reference:
 
 **Bottom LED**
 
