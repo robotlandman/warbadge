@@ -57,6 +57,6 @@ Red | Error uploading
 
 If you want to modify your badge and continue playing the game, update config.py with a new SSID and optional PSK to connect to. Set the SSID to your phone's hotspot and you'll have a roaming Wi-Fi scanning rig.
 
-If you just want to use the MicroPython environment and your badge is flashed, hit Ctrl-C to break out of the main.py running program. The badge has two NeoPixel RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
+If you just want to use the MicroPython environment and your badge is flashed, hit Ctrl-C to break out of the main.py running program. The badge has two [NeoPixel](http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/neopixel.html) RGB LEDs off pin 14 in addition to the Wi-Fi capabilities of the ESP 8266 chip. Index 0 is the LED in the nose of the rocket and index 1 is the tail LED.
 
 Have fun!
