@@ -16,6 +16,9 @@ UPLOAD_GOOD_STATUS = 201
 # Don't scan more often than this in ms
 SCAN_INTERVAL = 15000
 
+# Wait before scanning while connecting in ms
+CONNECT_PAUSE = 1000
+
 # NeoPixel LED configuration
 PIN_NEOPIXEL = 14
 

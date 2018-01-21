@@ -61,6 +61,10 @@ def main():
   # Keep track of how often we upload scan results
   last_upload = time.ticks_ms()
 
+  # Keep track of the last Wi-Fi connection
+  # This fixes the walkaround double-blue LED issue
+  last_connect = time.ticks_ms()
+
   # Our main program loop
   while True:
     # Check Wi-Fi connectivity
@@ -107,10 +111,12 @@ def main():
       # Need to connect
       np[config.LED_WIFI] = config.LED_COLOR_WIFI_DOWN
       np.write()
+      last_connect = time.ticks_ms()
       nic.connect(config.CONNECT_SSID)
-
+      
     # Check whether we should scan for SSIDs yet
-    if time.ticks_diff(time.ticks_ms(), last_scan) >= config.SCAN_INTERVAL:
+    now = time.ticks_ms()
+    if time.ticks_diff(now, last_scan) >= config.SCAN_INTERVAL and time.ticks_diff(now, last_connect) >= config.CONNECT_PAUSE:
       # It's time to scan
       np[config.LED_SCAN] = config.LED_COLOR_SCAN
       np.write()
