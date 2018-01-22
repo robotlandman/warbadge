@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Warbadge.ninja Shmoocon 2018</title>
+ 
+ 
+    <link href="https://warbadge.ninja/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="https://warbadge.ninja/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <link href="https://warbadge.ninja/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <script src="https://warbadge.ninja/css/jquery-1.12.4.js">
+
+    <script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#score').DataTable();
+        } );
+    </script>
+
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                </ul>
+            </nav>
+            <h3 class="text-muted">Warbadge.ninja - Shmoocon 2018</h3>
+        </div>
+        {% inlcude 'alert.html' %}
+
+        <div class="jumbotron">
+            <h1>Leaderboard - Updated every 60 seconds</h1>
+            <!-- <h3>Current Leader: {{ leader }}</h3> -->
+            <h3>Contestants identified as STAFF are not eligible for prizes.</h3>
+            <h3>Total contestants: {{ scores|length }}</h3>
+            <p class="lead"></p>
+            <table id="score" class="table display table-hover text-centered" cellspacing="0" width="100%">
+                <thead>
+            <tr> <th>Handle</td> <th>Badge</th> <th>Score</th> </tr>
+                </thead>
+            <tbody>
+	    {% for item in scores %}
+        <tr>
+            <td> {{ item[1][1] }}</td> <td> {{ item[0] }} </td><td> {{ item[1][0] }}</td>
+        </tr>
+	    {% endfor %}
+            </tbody>
+            </table>
+
+            </p>
+        </div>
+ 
+        <footer class="footer">
+            <p>&copy; Warbadging.ninja 2018</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>

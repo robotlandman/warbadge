@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Warbadge.ninja Shmoocon 2018</title>
+ 
+ 
+    <link href="https://warbadge.ninja/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="https://warbadge.ninja/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <link href="https://warbadge.ninja/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <link href="https://warbadge.ninja/css/jquery-1.12.4.js" rel="stylesheet">
+
+    <script type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#example').DataTable();
+        } );
+    </script>
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                </ul>
+            </nav>
+            <h3 class="text-muted">Warbadge.ninja - Shmoocon 2018</h3>
+        </div>
+        {% inlcude 'alert.html' %}
+
+        <div class="jumbotron">
+            <h1>Stats</h1>
+            <p class="lead"></p>
+        <table id="score" class="table table-hover text-centered">
+        <tr>
+            <td>Total submissions: {{ total[0] }} </td>
+        </tr>
+        </table>
+
+        <table id="score" class="table table-hover text-centered">
+            <tr> <th>ssid</th> <th># of submissions</th> </tr>
+	    {% for item in ssids %}
+        <tr>
+            <td> {{ item[0] }} </td><td> {{ item[1] }}</td>
+        </tr>
+	    {% endfor %}
+        </table>
+
+        <table id="score" class="table table-hover text-centered">
+            <tr> <th>bssid mac address</th> <th># of submissions</th> </tr>
+	    {% for item in bssids %}
+        <tr>
+            <td> {{ item[0] }} </td><td> {{ item[1] }}</td>
+        </tr>
+	    {% endfor %}
+        </table>
+
+            </p>
+        </div>
+ 
+        <footer class="footer">
+            <p>&copy; Warbadging.ninja 2018</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>
