@@ -7,6 +7,7 @@ import neopixel
 import network
 import ubinascii
 import urequests
+import ujson
 import config
 
 # Scan for SSIDs
@@ -84,7 +85,8 @@ def main():
         print('You are %s' % mac_id)
 
         try:
-          response = urequests.post(config.UPLOAD_URL + mac_id, json=ap_neighbors,  headers={'Content-Type': 'application/json', 'User-Agent': 'WarBadge Experimental ShmooCon 2018'})
+          encoded_ap_neighbors = ujson.dumps(ap_neighbors).encode('utf8')
+          response = urequests.post(config.UPLOAD_URL + mac_id, data=encoded_ap_neighbors,  headers={'Content-Type': 'application/json; charset=utf-8', 'User-Agent': 'WarBadge Experimental ShmooCon 2018'})
         except:
           # The upload didn't work
           np[config.LED_SCAN] = config.LED_COLOR_ERROR
