@@ -20,5 +20,6 @@ script:
   - ls -la
   - pycodestyle --config=leaderboard/.pycodestyle leaderboard/warbadge_app/*.py
   - pylint --load-plugins=pylint_flask --rcfile=leaderboard/.pylintrc leaderboard/warbadge_app/*.py
-  - nosetests --with-coverage --cover-html
+  # TODO: Add cover and cover-html to tests
+  - nosetests leaderboard/
 # TODO: Add badge codestyle
