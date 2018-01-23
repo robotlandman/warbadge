@@ -84,8 +84,8 @@ def main():
         # Print the MAC ID on the console
         print('You are %s' % mac_id)
 
+        encoded_ap_neighbors = ujson.dumps(ap_neighbors).encode('utf8')
         try:
-          encoded_ap_neighbors = ujson.dumps(ap_neighbors).encode('utf8')
           response = urequests.post(config.UPLOAD_URL + mac_id, data=encoded_ap_neighbors,  headers={'Content-Type': 'application/json; charset=utf-8', 'User-Agent': 'WarBadge Experimental ShmooCon 2018'})
         except:
           # The upload didn't work
