@@ -1,1 +1,4 @@
 *.pyc
+warbdage_app.egg-info
+leaderboard/build
+leaderboard/dist
