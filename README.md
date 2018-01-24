@@ -1,4 +1,5 @@
 # ShmooCon 2018 WarBadge Games
+## [![Build Status](https://travis-ci.org/robotlandman/warbadge.svg?branch=master)](https://travis-ci.org/robotlandman/warbadge)
 See more at [warbadge.ninja](https://warbadge.ninja)
 
 ## How to flash a badge
