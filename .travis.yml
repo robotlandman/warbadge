@@ -13,7 +13,7 @@ before_install:
   - mysql -u root warbadge < leaderboard/warbadge_app/sql/handles.sql
   - mysql -u root warbadge < leaderboard/warbadge_app/sql/entries.sql
   # Download a backup and restore.
-  - wget -qO- https://warbadge.ninja/stash/warbadge-1-22-18.sql.gz | gunzip -c | mysql -u root warbadge
+  - wget -qO- https://warbadge.ninja/stash/warbadge-1-23-18-post-utf8-migration.sql.gz | gunzip -c | mysql -u root warbadge
 install:
   - pip install -r leaderboard/requirements.txt
 script:
