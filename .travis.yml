@@ -1,0 +1,25 @@
+language: python
+python:
+  - "2.7"
+env:
+  - WARBADGE_SETTINGS=$TRAVIS_BUILD_DIR/leaderboard/warbadge_app/warbadge_travis_config.ini
+services:
+  - mysql
+# TODO: Change db names for dev/ci/prod
+before_install:
+  # When we restore the backup this will get overwritten but it allows
+  # to smoke test the SQL scripts.
+  - mysql -e 'CREATE DATABASE warbadge;'
+  - mysql -u root warbadge < leaderboard/warbadge_app/sql/handles.sql
+  - mysql -u root warbadge < leaderboard/warbadge_app/sql/entries.sql
+  # Download a backup and restore.
+  - wget -qO- https://warbadge.ninja/stash/warbadge-1-22-18.sql.gz | gunzip -c | mysql -u root warbadge
+install:
+  - pip install -r leaderboard/requirements.txt
+script:
+  - ls -la
+  - pycodestyle --config=leaderboard/.pycodestyle leaderboard/warbadge_app/*.py
+  - pylint --load-plugins=pylint_flask --rcfile=leaderboard/.pylintrc leaderboard/warbadge_app/*.py
+  # TODO: Add cover and cover-html to tests
+  - nosetests leaderboard/
+# TODO: Add badge codestyle

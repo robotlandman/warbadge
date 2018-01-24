@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `warbadge`.`handles` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `badge_mac` VARCHAR(45) UNIQUE NOT NULL,
+  `handle` VARCHAR(45) UNIQUE NOT NULL,
+  PRIMARY KEY (`id`));
