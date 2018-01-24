@@ -68,7 +68,7 @@ def get_handle_for_mac(mac):
     """
     # Staff handles will be displayed as STAFF in the leaderboard.
     # TODO: Put this in config?
-    staff = ['btm', 'Terry', 'effffn', 'ipl31', 'sandinak', 'robotlandman']
+    staff = ['btm', 'Terry', 'effffn', 'ipl31', 'kencaruso', 'sandinak', 'robotlandman']
     missing_handle = "--------"
     query = "SELECT * FROM handles WHERE `badge_mac`='{0}'".format(mac)
     conn = mysql.connect()
@@ -218,7 +218,7 @@ def update_handle(badge_mac):
     """ This route creates a new entry for a handle to badge mac
     mapping.
     """
-    log("update handle for %s" % badge_mac)
+    log.info("update handle for %s", badge_mac)
     request_json = request.get_json()
     insert_template = ("INSERT INTO handles (badge_mac, handle) "
                        "VALUES('{0}', '{1}')"
@@ -228,21 +228,21 @@ def update_handle(badge_mac):
     try:
         cursor.execute(insert_template)
         conn.commit()
-        log("Finished a transaction")
+        log.debug("Finished a transaction: %s", insert_template)
         return_code = 201
     except IntegrityError as exception:
         if exception[0] == 1062:
-            log("handle %s: already exists" % badge_mac)
+            log.warn("handle for %s: already exists", badge_mac)
             return_code = 409
         else:
-            log("handle %s: MySQL ERROR: %s" % exception)
-            log("MySQL ERROR: %s" % exception)
+            log.error("badge_mac %s: MySQL ERROR: %s", badge_mac, exception)
+            log.error("MySQL ERROR: %s", exception)
             return_code = 500
     else:
-        log("handle %s: added" % badge_mac)
+        log.info("handle %s: added", badge_mac)
     finally:
         conn.close()
-    payload = json.dumps({'warbadging': True}),
+    payload = json.dumps({'warbadging': True})
     content_type = {'ContentType': 'application/json'}
     return payload, return_code, content_type
 
@@ -267,7 +267,7 @@ dfc9e1340": -68, "189c5dd58a20": -69, "881dfc913080": -79, "8478acdeff20": -59},
     # the only reasonable thing we could do given the time frame.
     user_agent = request.headers.get('User-Agent')
     if "WarBadge Experimental ShmooCon 2018" not in user_agent:
-        log("Bad User-Agent: %s" % user_agent)
+        log.error("Bad User-Agent: %s", user_agent)
         abort(403)
     insert_template = (u"INSERT INTO entries "
                        "(badge_mac, ssid, bssid_mac, rssi) "
@@ -284,20 +284,20 @@ dfc9e1340": -68, "189c5dd58a20": -69, "881dfc913080": -79, "8478acdeff20": -59},
                                                 bssid_mac, rssi)
                 cursor.execute(insert)
                 conn.commit()
-                return_code = 201
     except NameError as exception:
-        log("Bad SSID: %s" % exception)
+        log.error("Bad SSID: %s", exception)
         return_code = 403
     # TODO: Find something more specific to catch.
     except Exception as exception:  # pylint: disable=W0703
-        log("Caught Exception (unicode?) for %s: %s" % (badge_mac, exception))
-        log(request.data)
+        log.error("Caught Exception (unicode?) for %s: %s", badge_mac, exception)
+        log.error(request.data)
         return_code = 500
     else:
-        log("Successful checkin for %s" % badge_mac)
+        return_code = 201
+        log.info("Successful checkin for %s", badge_mac)
     finally:
         conn.close()
-    payload = json.dumps({'warbadging': True}),
+    payload = json.dumps({'warbadging': True})
     content_type = {'ContentType': 'application/json'}
     return payload, return_code, content_type
 
