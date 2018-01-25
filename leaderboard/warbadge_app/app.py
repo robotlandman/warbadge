@@ -236,12 +236,12 @@ def update_handle(badge_mac):
         if exception[0] == 1062:
             log("handle %s: already exists switching to update" % badge_mac)
             try:
-              cursor.execute(update_template)
-              conn.commit()
-              log("Finished a transaction")
-              return_code = 201
-            except:
-              return_code = 409
+                cursor.execute(update_template)
+                conn.commit()
+                log("Finished a transaction")
+                return_code = 201
+            except e as exception:
+                return_code = 409
         else:
             log("handle %s: MySQL ERROR: %s" % exception)
             log("MySQL ERROR: %s" % exception)
