@@ -11,7 +11,7 @@ Use the schema files to create tables.
 Setup a mysql user.
 Configure the mysql creds in app.py
 pip install -r requirements.txt
-python ./appy.py
+python ./app.py
 
 # TODO:
 Probably some sql injection issues in the checkin code. Need to input validation.
