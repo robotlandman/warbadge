@@ -240,7 +240,7 @@ def update_handle(badge_mac):
                 conn.commit()
                 log("Finished a transaction")
                 return_code = 201
-            except Exception as exception:
+            except Exception as exception:  # pylint: disable=W0703
                 return_code = 409
         else:
             log("handle %s: MySQL ERROR: %s" % exception)
