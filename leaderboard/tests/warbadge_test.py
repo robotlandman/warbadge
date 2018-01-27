@@ -40,7 +40,7 @@ class WarbadgeTestCase(unittest.TestCase):
 
         update_handle = { "handle" : "kencaruso" }
         update = self.app.post("/handle/" + mac, data=update_handle, headers={'Content-type': 'application/json'})
-        self.assertEqual(update.status_code, 201)
+        self.assertEqual(update.status_code, 200)
 
         query = self.app.get("/handle_for_mac/" + mac)
         self.assertEqual(query.status_code, 200)

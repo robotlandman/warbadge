@@ -239,7 +239,7 @@ def update_handle(badge_mac):
                 cursor.execute(update_template)
                 conn.commit()
                 log.debug("Finished a transaction")
-                return_code = 201
+                return_code = 200
             except Exception as exception:  # pylint: disable=W0703
                 log.warn("issue updating handle for %s: %s", badge_mac, exception)
                 return_code = 409
