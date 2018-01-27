@@ -207,7 +207,7 @@ def get_handles():
     return json.dumps(data)
 
 
-@app.route('/handle_for_mac/<mac>', methods=['GET'])
+@app.route('/handle_for_mac/<badge_mac>', methods=['GET'])
 def handle_for_mac(badge_mac):
     """ Return a handle for a badge mac address """
     return json.dumps(get_handle_for_mac(badge_mac))
