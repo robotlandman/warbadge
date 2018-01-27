@@ -24,5 +24,22 @@ class WarbadgeTestCase(unittest.TestCase):
         result = self.app.get("/stats")
         self.assertEqual(result.status_code, 200) 
 
+    def test_handle(self):
+        new_handle = { "handle" : "new_handle" }
+        insert = self.app.post("/handle/020000000001", data=new_handle)
+        self.asserEqual(insert.status_code, 201)
+
+        iquery = self.app.get("/handle_for_mac/020000000001")
+        self.assertEqual(iquery.status_code, 200)
+        self.assertEqual(iquery.get_json()['handle'], "new_handle")
+
+        update_handle = { "handle" : "cool_handle" }
+        update = self.app.post("/handle/020000000001", data=update_handle)
+        self.asserEqual(update.status_code, 201)
+
+        uquery = self.app.get("/handle_for_mac/020000000001")
+        self.assertEqual(uquery.status_code, 200)
+        self.assertEqual(uquery.get_json()['handle'], "cool_handle")
+
 if __name__ == '__main__':
     unittest.main()
