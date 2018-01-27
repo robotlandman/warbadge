@@ -234,7 +234,7 @@ def update_handle(badge_mac):
         return_code = 201
     except IntegrityError as exception:
         if exception[0] == 1062:
-            log.info("handle %s: already exists switching to update" % badge_mac)
+            log.info("handle %s: already exists switching to update", badge_mac)
             try:
                 cursor.execute(update_template)
                 conn.commit()
