@@ -25,21 +25,26 @@ class WarbadgeTestCase(unittest.TestCase):
         self.assertEqual(result.status_code, 200) 
 
     def test_handle(self):
+        mac = "ecfabc12d1e1"
+        query = self.app.get("/handle_for_mac/" + mac)
+        self.assertEqual(query.status_code, 200)
+        self.assertEqual(query.get_json()['handle'], "kencaruso")
+
         new_handle = { "handle" : "new_handle" }
-        insert = self.app.post("/handle/020000000001", data=new_handle)
+        insert = self.app.post("/handle/" + mac, data=new_handle, headers={'Content-type': 'application/json'})
         self.assertEqual(insert.status_code, 201)
 
-        iquery = self.app.get("/handle_for_mac/020000000001")
-        self.assertEqual(iquery.status_code, 200)
-        self.assertEqual(iquery.get_json()['handle'], "new_handle")
+        query = self.app.get("/handle_for_mac/" + mac)
+        self.assertEqual(query.status_code, 200)
+        self.assertEqual(query.get_json()['handle'], "new_handle")
 
-        update_handle = { "handle" : "cool_handle" }
-        update = self.app.post("/handle/020000000001", data=update_handle)
+        update_handle = { "handle" : "kencaruso" }
+        update = self.app.post("/handle/" + mac, data=update_handle, headers={'Content-type': 'application/json'})
         self.assertEqual(update.status_code, 201)
 
-        uquery = self.app.get("/handle_for_mac/020000000001")
-        self.assertEqual(uquery.status_code, 200)
-        self.assertEqual(uquery.get_json()['handle'], "cool_handle")
+        query = self.app.get("/handle_for_mac/" + mac)
+        self.assertEqual(query.status_code, 200)
+        self.assertEqual(query.get_json()['handle'], "kencaruso")
 
 if __name__ == '__main__':
     unittest.main()
