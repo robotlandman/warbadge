@@ -207,7 +207,7 @@ def get_handles():
     return json.dumps(data)
 
 
-@app.route('/handle_for_mac/<mac>', methods=['GET'])
+@app.route('/handle_for_mac/<badge_mac>', methods=['GET'])
 def handle_for_mac(badge_mac):
     """ Return a handle for a badge mac address """
     return json.dumps(get_handle_for_mac(badge_mac))
@@ -220,8 +220,10 @@ def update_handle(badge_mac):
     """
     log.info("update handle for %s", badge_mac)
     request_json = request.get_json()
-    insert_template = ("INSERT INTO handles (badge_mac, handle) "
+    insert_template = (u"INSERT INTO handles (badge_mac, handle) "
                        "VALUES('{0}', '{1}')"
+                       .format(badge_mac, request_json['handle']))
+    update_template = (u"UPDATE handles SET handle = '{1}' WHERE badge_mac = '{0}'"
                        .format(badge_mac, request_json['handle']))
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -232,8 +234,15 @@ def update_handle(badge_mac):
         return_code = 201
     except IntegrityError as exception:
         if exception[0] == 1062:
-            log.warn("handle for %s: already exists", badge_mac)
-            return_code = 409
+            log.info("handle %s: already exists switching to update", badge_mac)
+            try:
+                cursor.execute(update_template)
+                conn.commit()
+                log.debug("Finished a transaction")
+                return_code = 200
+            except Exception as exception:  # pylint: disable=W0703
+                log.warn("issue updating handle for %s: %s", badge_mac, exception)
+                return_code = 409
         else:
             log.error("badge_mac %s: MySQL ERROR: %s", badge_mac, exception)
             log.error("MySQL ERROR: %s", exception)
