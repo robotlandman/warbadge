@@ -19,6 +19,6 @@ pylint-flask==0.5
 PyMySQL==0.8.0
 PyYAML==5.4
 requests==2.18.4
-urllib3==1.26.5
+urllib3==1.26.18
 uWSGI==2.0.15
 Werkzeug==0.14.1
