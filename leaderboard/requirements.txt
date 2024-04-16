@@ -5,7 +5,7 @@ Flask==1.0
 Flask-Cache==0.13.1
 Flask-FlatPages==0.6
 Flask-MySQL==1.4.0
-gunicorn==19.7.1
+gunicorn==22.0.0
 idna==2.6
 itsdangerous==0.24
 Jinja2==3.1.3
